@@ -25,13 +25,16 @@ The webui has a spring context XML file called "cloudify-webui-context.xml" :
 
 You can define your own file which overrides the cloudify-webui-context.xml.
 For localcloud you place it under the "config" folder under CloudifyRoot folder and for remote clouds you will place it under a cloudify-overrides (e.g.: For EC2, place the file in CloudifyRoot/clouds/ec2/upload/cloudify-overrides/config/cloudify-webui-context-override.xml). 
-The overriding file should be named "cloudify-webui-context-override.xml".
+The overriding file should be named "cloudify-webui-context-override.xml". <a href="cloudify-webui-override.xml">Download example</a>.
 
-# Modifying the value for "recipesRepository" property to "true" will turn the feature on.
-# Modifying the "URI" property of the "repositoryDefinitionBean" bean will modify the git which is cloned by Cloudify.
-# Modifying the "rootFolder" property of "repositoryDefinitionBean" bean will modify the target folder to which the repo is cloned.
-# Modifying the "existingMethod" property of the same bean will modify how Cloudify handles an existing clone. USE will simply use the folder, USE_IF_VALID will validate that this is a proper clone . If it's not valid, Cloudify will delete the folder and clone again.
 
+
+# _recipesRepository_ ( default false ) if set to true, turns the repository feature on.
+# _URI_ - ( default <a href="https://github.com/CloudifySource/cloudify-recipes" target="_blank">Cloudify Recipes</a> ) recipes will be cloned from this GIT repository.
+# _rootFolder_ ( default "cloudify_recipes_clone" ) recipes will be cloned to this folder.
+# _existingMethod_ - ( default "USE_IF_VALID" )
+## "USE" - rootFolder found will be used.
+## "USE_IF_VALID" - rootFolder is validated first. If invalid it is deleted and a new clone is made.
 
 Here's an override example:
 <script src="https://gist.github.com/tamirko/5230984.js"></script>
